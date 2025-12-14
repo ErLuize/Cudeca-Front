@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Evento - Cudeca</title>
+    
+    <!-- Vinculamos el CSS conjunto -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-evento">
+
+    <!-- Header con Imagen de Fondo -->
+    <header class="header-hero">
+        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2832&auto=format&fit=crop" 
+             class="header-bg-img" alt="Fondo Jardín">
+        
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="logo-text-group">
+                    <h1 class="logo-title">cudeca</h1>
+                    <p class="logo-subtitle">Fundación de Cuidados del Cáncer</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal -->
+    <main class="main-container">
+        <div class="content-wrapper">
+            <!-- Sin botón volver en esta vista -->
+
+            <!-- Tarjeta Principal -->
+            <div class="card main-card">
+                <div class="card-layout">
+                    
+                    <!-- Columna Izquierda (Formulario) -->
+                    <div class="column-form">
+                        <input type="text" placeholder="Nombre del evento" class="input-line input-title">
+                        
+                        <textarea placeholder="¿De qué trata tu evento? ¡Cuéntanos!" class="input-area input-body"></textarea>
+                        
+                         <div class="location-wrapper">
+                            <input type="text" placeholder="¿Donde vas a celebrar tu evento?" class="input-box input-location">
+                        </div>
+
+                         <div class="details-row">
+                            <input type="text" placeholder="Precio de entrada" class="input-box input-small">
+                            <input type="text" placeholder="Aforo máximo" class="input-box input-small">
+                         </div>
+                    </div>
+
+                    <!-- Columna Derecha -->
+                    <div class="column-sidebar">
+                        <!-- Widget Calendario -->
+                        <div class="calendar-widget">
+                            <div class="calendar-header">Tue, 24 2020</div>
+                            <div class="calendar-grid">
+                                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                                <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                                <span>6</span><span>7</span><span>8</span><span>9</span><span class="day-active">10</span><span>11</span><span>12</span>
+                                <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                            </div>
+                        </div>
+
+                        <!-- Selector de Imagen -->
+                        <div class="image-selector" id="imageSelector">
+                            <span class="selector-text">Selecciona<br>una imagen</span>
+                        </div>
+
+                        <!-- Botón de acción -->
+                        <div class="action-wrapper">
+                            <button class="btn-primary btn-submit">
+                                Publicar<br>Evento
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lógica Javascript -->
+    <script src="script.js"></script>
+</body>
+</html>
