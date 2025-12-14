@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Cudeca - Donación</title>
+    <link rel="stylesheet" href="Donacion.css">
+    <script src="Donacion.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo-badge">
+            <small>FUNDACIÓN</small>
+            <h2>cudeca</h2>
+        </div>
+    </header>
+
+    <!-- TARJETA SUPERPUESTA AL HEADER -->
+    <div class="card-container">
+        
+        <!-- BOTÓN QUE SE SUPERPONE ENTRE HEADER Y TARJETA -->
+        <a href="#" class="btn-socio-float">Hazte socio</a>
+
+        <div class="intro-header">
+            <div class="back-icon">&#10140;</div>
+            <div class="intro-text">
+                <h3>Realiza una donación a la fundación para poder ayudar a más personas<br>
+                o hazte socio para poder realizar donaciones automáticas cada mes</h3>
+            </div>
+        </div>
+
+        <div class="form-grid">
+            
+            <!-- COLUMNA IZQUIERDA -->
+            <div class="col-left">
+                <h4>Datos del donante</h4>
+                
+                <div class="input-group">
+                    <label class="label-text">Nombre:</label>
+                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                </div>
+
+                <div class="input-group">
+                    <label class="label-text">Apellidos:</label>
+                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                </div>
+
+                <div class="input-group">
+                    <label class="label-text">Fecha de nacimiento:</label>
+                    <div class="date-group">
+                        <input type="text" class="date-mini" placeholder="dd"> <span>/</span>
+                        <input type="text" class="date-mini" placeholder="mm"> <span>/</span>
+                        <input type="text" class="date-mini" style="width: 80px;" placeholder="año">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label class="label-text">Dirección:</label>
+                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                </div>
+
+                <div class="input-group">
+                    <label class="label-text">DNI:</label>
+                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                </div>
+
+                <div class="input-group">
+                    <label class="label-text">Correo electrónico:</label>
+                    <input type="email" class="input-field" placeholder="Introduce aquí...">
+                </div>
+
+                <div class="input-group">
+                    <label class="label-text">Número de teléfono:</label>
+                    <input type="tel" class="input-field" placeholder="Introduce aquí...">
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA -->
+            <div class="col-right">
+                <h4 style="font-size:1.3rem;">Elija la cantidad a donar:</h4>
+                
+                <div class="money-options">
+                    <button class="btn-money">5€</button>
+                    <button class="btn-money">10€</button>
+                    <button class="btn-money">20€</button>
+                </div>
+
+                <div class="other-input-group">
+                    <label class="other-label">Otra cantidad:</label>
+                    <input type="text" class="other-input">
+                </div>
+
+                <button class="btn-submit">Enviar</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
