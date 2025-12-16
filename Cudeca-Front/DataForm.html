@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Cudeca - Formulario de Datos</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/DataForm.js" defer></script>
+</head>
+<body class="page--form-datos">
+
+    <div class="cudeca"></div>
+    <div class="banner">
+        <div class="hero-title">Ayúdanos a Saber de ti </div>
+        <div class="overlay">
+    </div> 
+    </div>
+    
+    <div class="container">
+        <form>
+            <div class="form-row">
+                <label class="form-label">Nombre:</label>
+                <input type="text" class="form-input" placeholder="Introduce aquí..." required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Apellidos:</label>
+                <input type="text" class="form-input" placeholder="Introduce aquí..." required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Fecha de nacimiento:</label>
+                <div class="date-container">
+                    <input type="text" class="date-box" placeholder="dd" required> <span class="date-sep">/</span>
+                    <input type="text" class="date-box" placeholder="mm" required> <span class="date-sep">/</span>
+                    <input type="text" class="date-box" style="width:80px;" placeholder="aaaa" required>
+                    <span class="date-hint">dd/mm/aaaa</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Dirección:</label>
+                <input type="text" class="form-input" placeholder="Introduce aquí..." required>
+            </div>
+
+            <!-- CAMPO ESPECÍFICO DE ESTA CAPTURA -->
+            <div class="form-row">
+                <label class="form-label">Código postal:</label>
+                <input type="text" class="form-input" placeholder="Introduce aquí..." required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Correo electrónico:</label>
+                <input type="email" class="form-input" placeholder="Introduce aquí..." required>
+            </div>
+
+            <div class="form-row">
+                <label class="form-label">Número de teléfono:</label>
+                <input type="tel" class="form-input" placeholder="Introduce aquí..." required>
+            </div>
+
+            <div class="footer-actions">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms">
+                    <label for="terms">Estoy de acuerdo y acepto las condiciones de uso</label>
+                </div>
+                <button type="button" class="btn-terminar">Terminar</button>
+            </div>
+        </form>
+</div>
+
+</body>
+</html>
