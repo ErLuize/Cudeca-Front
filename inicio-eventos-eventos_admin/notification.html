@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Notificacion - Cudeca</title>
+    
+    <!-- Vinculamos el CSS conjunto -->
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body class="page--evento-notificaciones">
+    <div class="cudeca"></div>
+    <div class="banner">
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Contenedor Principal -->
+    <main class="main-container">
+        <div class="content-wrapper">
+            <!-- Sin botón volver en esta vista -->
+
+            <!-- Tarjeta Principal -->
+            <div class="card main-card">
+                <div class="card-layout">
+                    
+                    <!-- Columna Izquierda (Formulario) -->
+                    <div class="column-form">
+                        <input type="text" placeholder="Asunto" class="input-line input-title">
+                        
+                        <textarea placeholder="Cuerpo del correo" class="input-area input-body"></textarea>
+                         <div class="details-row">
+                            <input type="text" placeholder="Selecciona para que evento" class="input-box input-small">
+                         </div>
+                    </div>
+
+                    <!-- Columna Derecha -->
+                    <div class="column-sidebar">
+                        <!-- Widget Calendario -->
+                        <div class="calendar-widget">
+                            <div class="calendar-header">Tue, 24 2020</div>
+                            <div class="calendar-grid">
+                                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                                <span></span><span></span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+                                <span>6</span><span>7</span><span>8</span><span>9</span><span class="day-active">10</span><span>11</span><span>12</span>
+                                <span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                            </div>
+                        </div>
+                        <!-- Botón de acción -->
+                        <div class="action-wrapper">
+                            <button class="btn-primary btn-submit">
+                                Enviar<br>Notificacion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lógica Javascript -->
+    <script src="script.js"></script>
+</body>
+</html>
