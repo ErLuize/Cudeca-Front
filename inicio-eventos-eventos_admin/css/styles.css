@@ -1341,10 +1341,6 @@ body.page--pago p{
 /* =========================
     CARGANDO
    ========================= */
-
-
-
-
 body.page--cargando .content{
     padding: 80px 40px;
     display: flex;
@@ -1443,4 +1439,176 @@ body.page--cargando .spinner-dots .dot:nth-child(12){ transform: rotate(330deg) 
     .spinner::before {
         border-width: 6px;
     }
+}
+
+/* ---------------------------------------------------------
+   PAGE: FORMULARIO DE DATOS (alineado con PAGO)
+   Pegar AL FINAL del styles.css
+   --------------------------------------------------------- */
+
+body.page--form-datos .hero-title{
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 60px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,.5);
+  padding: 0 20px;
+  z-index: 2;
+}
+
+/* wrapper igual que pago (ancho + márgenes) */
+body.page--form-datos .container{
+  width: min(var(--maxw), 100% - 32px);
+  margin: 18px auto 40px;
+}
+
+/* tarjeta principal */
+body.page--form-datos .error-message{
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 44px 34px;
+  box-shadow: var(--shadow);
+}
+
+/* filas como PAGO: label + input */
+body.page--form-datos .form-row{
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* labels coherentes */
+body.page--form-datos .form-label{
+  text-align: right;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 700;
+  width: auto;        /* anulamos el width fijo antiguo */
+}
+
+/* inputs (si tu HTML usa .form-input) */
+body.page--form-datos .form-input{
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--surface);
+  transition: border-color .2s, box-shadow .2s;
+}
+body.page--form-datos .form-input::placeholder{
+  color: var(--muted-2);
+}
+body.page--form-datos .form-input:focus{
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(40,167,69,.18);
+}
+
+/* fecha: mismo estilo que dob */
+body.page--form-datos .date-container{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+body.page--form-datos .date-box{
+  width: 56px;
+  text-align: center;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+  background: var(--surface);
+}
+body.page--form-datos .date-sep{ opacity: .6; }
+body.page--form-datos .date-hint{
+  margin-left: 10px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* errores (si hay spans/small debajo del input) */
+body.page--form-datos .error-message .error,
+body.page--form-datos .error-message small.error,
+body.page--form-datos .error-message .error-message{
+  color: var(--danger);
+  font-size: 12px;
+}
+
+/* estados error para inputs y fecha */
+body.page--form-datos .form-input.has-error,
+body.page--form-datos .date-box.has-error{
+  border-color: #c0392b;
+}
+body.page--form-datos .form-input.has-error::placeholder,
+body.page--form-datos .date-box.has-error::placeholder{
+  color: #c0392b;
+}
+
+/* footer acciones */
+body.page--form-datos .footer-actions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+body.page--form-datos .checkbox-group{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+body.page--form-datos .checkbox-group label{
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* botón igual que el primario del sistema */
+body.page--form-datos .btn-terminar{
+  background: var(--brand);
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background-color .2s, transform .2s, box-shadow .2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+body.page--form-datos .btn-terminar:hover{
+  background: var(--brand-hover);
+  transform: translateY(-1px);
+}
+
+/* Responsive: como PAGO (una columna) */
+@media (max-width: 768px){
+  body.page--form-datos .hero-title{ font-size: 1.8rem; }
+
+  body.page--form-datos .form-row{
+    grid-template-columns: 1fr;
+  }
+  body.page--form-datos .form-label{
+    text-align: left;
+  }
+
+  body.page--form-datos .footer-actions{
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+
+  body.page--form-datos .btn-terminar{
+    width: 100%;
+    justify-content: center;
+  }
 }
