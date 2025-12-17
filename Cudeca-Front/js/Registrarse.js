@@ -47,7 +47,7 @@ confirmPasswordInput.addEventListener('input', function() {
     }
 });
 
-form.addEventListener('submit', function(e) {
+form.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     let isValid = true;
@@ -75,11 +75,36 @@ form.addEventListener('submit', function(e) {
 
     if (isValid) {
         const email = emailInput.value;
+        const password = passwordInput.value;
         const remember = document.getElementById('remember').checked;
         
-        console.log('Registro exitoso:', { email, remember });
-        alert('¡Registro completado con éxito! (Esta es una demo sin backend)');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Registrando...';
+        submitBtn.disabled = true;
         
-        form.reset();
+        try {
+            const response = await apiRequest(API_ENDPOINTS.auth.register, {
+                method: 'POST',
+                body: JSON.stringify({ email, password })
+            });
+            
+            if (response.success) {
+                saveSession(response);
+                
+                if (remember) {
+                    localStorage.setItem('rememberUser', 'true');
+                }
+                
+                alert('¡Registro completado con éxito!');
+                window.location.href = 'eventsPage.html';
+            }
+        } catch (error) {
+            const errorMsg = error.data?.error || 'Error al registrar usuario';
+            alert(errorMsg);
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
     }
 });

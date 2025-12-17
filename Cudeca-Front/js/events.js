@@ -1,6 +1,7 @@
 let dateFilterActive = false;
 let startDateFilter = null;
 let endDateFilter = null;
+let selectedEventId = null;
 
 function openModal() {
     document.getElementById('dateModal').style.display = 'block';
@@ -27,7 +28,12 @@ function closeModal() {
 }
 
 function buyTickets() {
-    window.location.href = 'payment.html';
+    if (selectedEventId) {
+        sessionStorage.setItem('selectedEventId', selectedEventId);
+        window.location.href = `payment.html?evento=${selectedEventId}`;
+    } else {
+        window.location.href = 'payment.html';
+    }
 }
 
 window.onclick = function(event) {
@@ -126,6 +132,9 @@ function openMovieModal(card) {
     const genre = card.dataset.genre;
     const duration = card.dataset.duration;
     const director = card.dataset.director;
+    
+    // Guardar el id del evento seleccionado
+    selectedEventId = card.dataset.id || null;
 
     const [year, month, day] = date.split('-');
     const eventDate = new Date(year, month - 1, day);
@@ -158,9 +167,78 @@ function closeMovieModal() {
     document.getElementById('modalTrailer').innerHTML = '';
 }
 
+// Función para cargar eventos desde el backend en sección separada
+async function loadEventsFromAPI() {
+    try {
+        const response = await apiRequest(API_ENDPOINTS.eventos.list, { method: 'GET' });
+        
+        if (response && response.data && response.data.length > 0) {
+            const apiSection = document.getElementById('apiEventsSection');
+            const apiEventsGrid = document.getElementById('apiEventsGrid');
+            
+            apiSection.style.display = 'block';
+            apiEventsGrid.innerHTML = '';
+            
+            response.data.forEach(evento => {
+                // Parsear fecha y hora del formato "2025-12-31 21:00:00"
+                let fechaStr = '';
+                let horaStr = '19:00';
+                if (evento.fecha) {
+                    const partes = evento.fecha.split(' ');
+                    fechaStr = partes[0] || '';
+                    if (partes[1]) {
+                        horaStr = partes[1].substring(0, 5); // "21:00:00" -> "21:00"
+                    }
+                }
+                
+                const card = document.createElement('div');
+                card.className = 'event-card';
+                card.dataset.id = evento.id_evento || '';
+                card.dataset.title = evento.nombre || '';
+                card.dataset.date = fechaStr;
+                card.dataset.time = horaStr;
+                card.dataset.description = evento.descripcion || '';
+                card.dataset.trailer = evento.trailer || '';
+                card.dataset.genre = evento.tipo_evento || '';
+                card.dataset.duration = evento.duracion || '';
+                card.dataset.director = evento.director || '';
+                card.dataset.location = evento.ubicacion || '';
+                
+                card.innerHTML = `
+                    <img src="${evento.imagen || 'img/eventos/default.jpg'}" alt="${evento.nombre}" class="event-image">
+                    <div class="event-info">
+                        <div class="event-title">${evento.nombre}</div>
+                        <div class="event-date">${formatEventDate(fechaStr, horaStr)}</div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openMovieModal(card));
+                apiEventsGrid.appendChild(card);
+            });
+        }
+    } catch (error) {
+        console.log('Backend no disponible, mostrando solo eventos estáticos');
+    }
+}
+
+function formatEventDate(dateStr, timeStr) {
+    if (!dateStr) return '';
+    const [year, month, day] = dateStr.split('-');
+    const date = new Date(year, month - 1, day);
+    const options = { day: 'numeric', month: 'long' };
+    return `${date.toLocaleDateString('es-ES', options)}, ${timeStr || ''}`;
+}
+
 // Event listeners
 document.querySelectorAll('.event-card').forEach(card => {
     card.addEventListener('click', () => {
         openMovieModal(card);
     });
+});
+
+// Intentar cargar eventos del backend al iniciar (si falla, usa los estáticos del HTML)
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof apiRequest !== 'undefined' && typeof API_ENDPOINTS !== 'undefined') {
+        loadEventsFromAPI();
+    }
 });

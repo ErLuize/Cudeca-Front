@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!btnSubmit) return;
 
-  btnSubmit.addEventListener("click", (e) => {
+  btnSubmit.addEventListener("click", async (e) => {
     e.preventDefault();
 
     let ok = true;
@@ -68,6 +68,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!ok) return;
 
-    alert("¡Gracias! Donación preparada correctamente.");
+    // Recoger datos del formulario
+    const nombre = document.querySelector('[name="nombre"]')?.value.trim();
+    const apellidos = document.querySelector('[name="apellidos"]')?.value.trim();
+    const dni = document.querySelector('[name="dni"]')?.value.trim();
+    const email = document.querySelector('[name="email"]')?.value.trim();
+    const telefono = document.querySelector('[name="telefono"]')?.value.trim();
+    const direccion = document.querySelector('[name="direccion"]')?.value.trim();
+    const importe = parseFloat(otherInput?.value) || 0;
+
+    if (importe <= 0) {
+      alert("Por favor, selecciona o introduce una cantidad válida.");
+      return;
+    }
+
+    const originalText = btnSubmit.textContent;
+    btnSubmit.textContent = "Enviando...";
+    btnSubmit.disabled = true;
+
+    try {
+      const response = await apiRequest(API_ENDPOINTS.donaciones.create, {
+        method: "POST",
+        body: JSON.stringify({
+          importe,
+          nombre,
+          apellidos,
+          dni,
+          email,
+          telefono,
+          direccion,
+          certificado: "N"
+        })
+      });
+
+      alert("¡Gracias! Tu donación ha sido registrada correctamente.");
+      window.location.href = "index.html";
+    } catch (error) {
+      const errorMsg = error.data?.error || "Error al procesar la donación";
+      alert(errorMsg);
+    } finally {
+      btnSubmit.textContent = originalText;
+      btnSubmit.disabled = false;
+    }
   });
 });

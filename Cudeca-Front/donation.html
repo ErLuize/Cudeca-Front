@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fundación Cudeca - Donación</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <script src="./js/api.js" defer></script>
     <script src="./js/donation.js" defer></script>
 </head>
 <body class="page--donacion">
@@ -34,41 +35,41 @@
                 
                 <div class="input-group">
                     <label class="label-text">Nombre:</label>
-                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                    <input type="text" name="nombre" class="input-field" placeholder="Introduce aquí...">
                 </div>
 
                 <div class="input-group">
                     <label class="label-text">Apellidos:</label>
-                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                    <input type="text" name="apellidos" class="input-field" placeholder="Introduce aquí...">
                 </div>
 
                 <div class="input-group">
                     <label class="label-text">Fecha de nacimiento:</label>
                     <div class="date-group">
-                        <input type="text" class="date-mini" placeholder="dd"> <span>/</span>
-                        <input type="text" class="date-mini" placeholder="mm"> <span>/</span>
-                        <input type="text" class="date-mini" style="width: 80px;" placeholder="año">
+                        <input type="text" name="dia" class="date-mini" placeholder="dd"> <span>/</span>
+                        <input type="text" name="mes" class="date-mini" placeholder="mm"> <span>/</span>
+                        <input type="text" name="anio" class="date-mini" style="width: 80px;" placeholder="año">
                     </div>
                 </div>
 
                 <div class="input-group">
                     <label class="label-text">Dirección:</label>
-                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                    <input type="text" name="direccion" class="input-field" placeholder="Introduce aquí...">
                 </div>
 
                 <div class="input-group">
                     <label class="label-text">DNI:</label>
-                    <input type="text" class="input-field" placeholder="Introduce aquí...">
+                    <input type="text" name="dni" class="input-field" placeholder="Introduce aquí...">
                 </div>
 
                 <div class="input-group">
                     <label class="label-text">Correo electrónico:</label>
-                    <input type="email" class="input-field" placeholder="Introduce aquí...">
+                    <input type="email" name="email" class="input-field" placeholder="Introduce aquí...">
                 </div>
 
                 <div class="input-group">
                     <label class="label-text">Número de teléfono:</label>
-                    <input type="tel" class="input-field" placeholder="Introduce aquí...">
+                    <input type="tel" name="telefono" class="input-field" placeholder="Introduce aquí...">
                 </div>
             </div>
 

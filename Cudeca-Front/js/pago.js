@@ -134,10 +134,63 @@ form.addEventListener('input', (e) => {
   }
 });
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!validate()) return;
 
-  const ok = simulatePayment();
-  window.location.href = ok ? 'paymentok.html' : '../paymentError.html';
+  const submitBtn = document.querySelector('button[type="submit"][form="paymentForm"]');
+  const originalText = submitBtn ? submitBtn.textContent : 'Finalizar pago';
+  if (submitBtn) {
+    submitBtn.textContent = 'Procesando...';
+    submitBtn.disabled = true;
+  }
+
+  // Obtener datos del formulario
+  const nombre = form.nombre.value.trim();
+  const apellidos = form.apellidos.value.trim();
+  const email = form.email.value.trim();
+  const cp = form.cp.value.trim();
+  const tickets = Number(document.getElementById('tickets').value);
+
+  // Obtener id_evento de la URL o sessionStorage
+  const urlParams = new URLSearchParams(window.location.search);
+  const idEvento = urlParams.get('evento') || sessionStorage.getItem('selectedEventId');
+
+  if (!idEvento) {
+    alert('No se ha seleccionado ningún evento. Por favor, vuelve a la página de eventos.');
+    if (submitBtn) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+    return;
+  }
+
+  try {
+    const response = await apiRequest(API_ENDPOINTS.compras.comprar, {
+      method: 'POST',
+      body: JSON.stringify({
+        id_evento: idEvento,
+        metodo_pago: 'tarjeta',
+        tipo_entrada: 'estandar',
+        cantidad: tickets,
+        nombre_usuario: nombre,
+        apellidos_usuario: apellidos,
+        email: email,
+        codigo_postal: cp
+      })
+    });
+
+    // Guardar datos de la compra para mostrar en la página de éxito
+    sessionStorage.setItem('lastPurchase', JSON.stringify(response));
+    window.location.href = 'paymentok.html';
+  } catch (error) {
+    const errorMsg = error.data?.error || 'Error al procesar el pago';
+    alert(errorMsg);
+    window.location.href = 'paymentError.html';
+  } finally {
+    if (submitBtn) {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  }
 });
